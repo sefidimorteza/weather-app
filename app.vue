@@ -38,7 +38,7 @@ if (!cookie.value) cookie.value = "tehran";
 const search = ref(cookie.value);
 const input = ref("");
 const background = ref("");
-
+const config = useRuntimeConfig()
 const { data: city, error } = useAsyncData(
   "city",
   async () => {
@@ -50,7 +50,7 @@ const { data: city, error } = useAsyncData(
         {
           params: {
             units: "metric",
-            appid: "99456643ce575a4cb9bf289f44571c6f",
+            appid: config.public.WEATHER_APP_SECRET,
           },
         }
       );
@@ -72,7 +72,7 @@ const { data: city, error } = useAsyncData(
         background.value =
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3546&q=80";
       }
-    } catch (e) {}
+    } catch (e) { }
 
     return response;
   },
